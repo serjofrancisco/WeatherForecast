@@ -3,13 +3,21 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 export default function Home() {
   const [backgroundImage, setBackgroundImage] = useState("")
+  const [position, setPosition] = useState({ latitude: 0, longitude: 0 })
   const getBackgroundImage = async () => {
     const url = await getURl()
     setBackgroundImage(url)
-    console.log(url)
   }
-   useEffect(() => {
+  
+   const getPosition = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords
+      setPosition({ latitude, longitude })
+    })
+  } 
+  useEffect(() => {
     getBackgroundImage()
+    getPosition()
    }, [])
    const styling = {
     backgroundImage: `url(${backgroundImage})`,
