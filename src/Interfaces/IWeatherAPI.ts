@@ -1,44 +1,61 @@
-export default interface IWeather 
-  {
-    "coord": {
-        "lon": number,
-        "lat": number
+interface IWeather 
+{
+    "dt": number, // data e hora da previsão
+    "main": {
+        "temp": number, // temperatura
+        "feels_like": number, // sensação térmica
+        "temp_min": number, // temperatura mínima
+        "temp_max": number, // temperatura máxima
+        "pressure": number, // pressão atmosférica (hPa)
+        "sea_level": number, // pressão atmosférica no nível do mar (hPa)
+        "grnd_level": number, // pressão atmosférica no nível do solo (hPa)
+        "humidity": number, // umidade relativa do ar
+        "temp_kf": number 
     },
     "weather": [
         {
-            "id": number,
-            "main": string, // Grupo do clima
-            "description": string, // descrição do clima
-            "icon": string // icon id (Lembrar o que fazer com isso)
+            "id": number, // id da condição meteorológica
+            "main": string, // grupo da condição meteorológica
+            "description": string, // condição meteorológica
+            "icon": string // ícone da condição meteorológica
         }
     ],
-    "base": string,
-    "main": {
-        "temp": number,  // temperatura
-        "feels_like": number, // sensação térmica
-        "temp_min": number,  // temperatura minima
-        "temp_max": number,  // temperatura maxima
-        "pressure": number,  // pressão atmosferica
-        "humidity": number   // umidade do ar
+    "clouds": {
+        "all": number // taxa de nuvens
     },
-    "visibility": number, // visibilidade
     "wind": {
         "speed": number, // velocidade do vento
-        "deg": number    // direção do vento
+        "deg": number, // direção do vento
+        "gust": number // velocidade do vento
     },
-    "clouds": {
-        "all": number   // porcentagem de nuvens
+    "visibility": number, // visibilidade
+    "pop": number, // probabilidade de chuva
+    "rain": {
+        "3h": number // volume de chuva nas últimos 3 horas
     },
-    "dt": number,
     "sys": {
-        "type": number,
-        "id": number,
-        "country": string, // codigo do pais
-        "sunrise": string, // horario do nascer do sol
-        "sunset": string  // horario do por do sol
+        "pod": string // parte do dia (d = dia, n = noite)
     },
-    "timezone": number, // diferença de horario em segundos com o UTC
-    "id": number,
-    "name": string,
-    "cod": number // codigo de resposta, 200 = ok
+    "dt_txt": string // data e hora da previsão em formato de texto
+}
+
+
+interface IWeatherForecast {
+    "cod": string 
+    "message": number,
+    "cnt": number, // número de previsões
+    "list": IWeather[],
+    "city": {
+        "id": number, // id da cidade
+        "name": string, // nome da cidade
+        "coord": {
+            "lat": number, // latitude
+            "lon": number // longitude
+        },
+        "country": string, // código do país
+        "population": number, // população
+        "timezone": number, // fuso horário (segundos)
+        "sunrise": number, // horário do nascer do sol
+        "sunset": number // horário do pôr do sol
+    }
 }

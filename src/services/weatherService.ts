@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
+const BASE_URL = 'https://api.openweathermap.org/data/2.5/forecast';
 
 async function getWeatherFromAPI(lat: number, lon: number) {
     //lat = latitude, lon = longitude, cnt = number of days, appid = API key 
@@ -6,6 +6,7 @@ async function getWeatherFromAPI(lat: number, lon: number) {
     try{
         const response = await fetch(URL);
         const data = await response.json();
+        console.log(data)
         return data;
     }catch(err){
      console.log(err);
@@ -15,4 +16,5 @@ async function getWeatherFromAPI(lat: number, lon: number) {
 function getWeatherIconURL(icon: string) {
     return `http://openweathermap.org/img/wn/${icon}.png`;
 }
+
 export {getWeatherFromAPI, getWeatherIconURL};
