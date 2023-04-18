@@ -4,8 +4,10 @@ import { useState, useEffect } from "react"
 import WeatherCard from "@/components/WeatherCard"
 import Header from "@/components/Header"
 import LocationCard from "@/components/LocationCard"
+import Footer from "@/components/Footer"
 import { Context } from "@/context/context"
 import { useContext } from "react"
+import Head from "next/head"
 export default function Home() {
   const [backgroundImage, setBackgroundImage] = useState("")
   const { weather } = useContext(Context)
@@ -37,9 +39,14 @@ export default function Home() {
       fontSize: "1.5rem",
       color: "white",
       textShadow: "2px 2px 4px #000000",
+      justifyContent: "center",
     } as const
   return (
     <>
+    <Head>
+      <title>Weather APP</title>
+      <meta name="description" content="Weather APP" />
+    </Head>
     <Header />
     <main style={styling}>
       <LocationCard />
@@ -49,7 +56,8 @@ export default function Home() {
       }) : <h1>Carregando...</h1>
       }
       </div>
-    </main> 
+    </main>
+    <Footer />
     </>
   )
 }

@@ -5,4 +5,9 @@ function getHourFromTimestamp(timestamp: number): string {
   return date.format('HH:mm');
 }
 
-export { getHourFromTimestamp };
+function getCompleteDateFromTimestamp(timestamp: number): string {
+  const date = dayjs.unix(timestamp);
+  return date.format('DD/MM/YYYY HH:mm');
+}
+
+export { getHourFromTimestamp, getCompleteDateFromTimestamp };
