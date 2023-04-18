@@ -1,4 +1,4 @@
-interface IWeather 
+export default interface IWeather 
   {
     "coord": {
         "lon": number,
@@ -34,8 +34,8 @@ interface IWeather
         "type": number,
         "id": number,
         "country": string, // codigo do pais
-        "sunrise": TimeRanges, // horario do nascer do sol
-        "sunset": TimeRanges  // horario do por do sol
+        "sunrise": string, // horario do nascer do sol
+        "sunset": string  // horario do por do sol
     },
     "timezone": number, // diferença de horario em segundos com o UTC
     "id": number,

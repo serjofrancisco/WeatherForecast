@@ -2,11 +2,12 @@ import getWeatherFromAPI from "@/services/weatherService"
 import { useState, useEffect } from "react"
 import { Context } from "@/context/context"
 import { useContext } from "react"
+import IWeather from "@/Interfaces/IWeatherAPI"
 
 
 export default function WeatherCard() {
     const { position } = useContext(Context)
-    const [weather, setWeather] = useState({})
+    const [weather, setWeather] = useState({} as IWeather)
 
     const getWeather = async () => {
         const weather = await getWeatherFromAPI(position.latitude, position.longitude)
@@ -18,8 +19,21 @@ export default function WeatherCard() {
         getWeather()
     }, [position])
 
+    const styleSheet = {
+        color: "black",
+    } as const
+
   return (
-    <div>nada</div>
+        weather.main && (
+          <div style={styleSheet}>
+      <h1>Weather Card</h1>
+      <p>{`Temperatura atual: ${weather.main.temp}`}</p>
+      <p>{`Temperatura Máxima: ${weather.main.temp_max}`}</p>
+      <p>{`Temperatura Minima: ${weather.main.temp_min}`}</p>
+      <p>{`Nascer Do Sol: ${weather.sys.sunrise}`}</p>
+      <p>{`Por Do Sol: ${weather.sys.sunset}`}</p>
+      </div>
+        )
   )
 }
 
