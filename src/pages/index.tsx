@@ -9,15 +9,10 @@ export default function Home() {
     setBackgroundImage(url)
   }
   
-   const getPosition = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude } = position.coords
-      setPosition({ latitude, longitude })
-    })
-  } 
+  
   useEffect(() => {
     getBackgroundImage()
-    getPosition()
+    
    }, [])
    const styling = {
     backgroundImage: `url(${backgroundImage})`,
