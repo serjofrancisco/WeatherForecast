@@ -12,4 +12,7 @@ async function getWeatherFromAPI(lat: number, lon: number) {
     }
 }
 
-export default getWeatherFromAPI;
+function getWeatherIconURL(icon: string) {
+    return `http://openweathermap.org/img/wn/${icon}.png`;
+}
+export {getWeatherFromAPI, getWeatherIconURL};

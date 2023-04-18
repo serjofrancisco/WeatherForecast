@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['www.bing.com'],
+    domains: ['www.bing.com', 'openweathermap.org'],
   }
 }
 
