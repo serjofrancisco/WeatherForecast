@@ -1,6 +1,7 @@
 import getURl from "@/services/backgroundImage"
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import WeatherCard from "@/components/WeatherCard"
 export default function Home() {
   const [backgroundImage, setBackgroundImage] = useState("")
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 })
@@ -24,6 +25,7 @@ export default function Home() {
   return (
     <main style={styling}>
       <h1>Background Image</h1>
+      <WeatherCard />
     </main> 
   )
 }
