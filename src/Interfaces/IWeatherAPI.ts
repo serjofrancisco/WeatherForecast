@@ -59,3 +59,5 @@ interface IWeatherForecast {
         "sunset": number // horário do pôr do sol
     }
 }
+
+export type {IWeather, IWeatherForecast};

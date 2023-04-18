@@ -9,3 +9,5 @@ export default async function getURl() {
       console.log(err);
     }
   }
+
+// API documentation: https://github.com/TimothyYe/bing-wallpaper

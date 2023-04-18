@@ -1,12 +1,16 @@
 import React, { createContext, useState, useEffect } from "react";
 import { getWeatherFromAPI } from "@/services/weatherService";
+import { IWeatherForecast } from "@/Interfaces/IWeatherAPI";
+import { ILocation } from "@/Interfaces/ILocationAPI";
+import { getLocationFromLatitudeLongitute } from "@/services/locationService";
 
 type ContextType = {
     position: {
         latitude: number;
         longitude: number;
     }
-    weather: IWeather;
+    weather: IWeatherForecast;
+    location: ILocation;
 }
 
 const Context = createContext<ContextType>({
@@ -14,7 +18,8 @@ const Context = createContext<ContextType>({
         latitude: 0,	
         longitude: 0
     },
-    weather: {} as IWeather
+    weather: {} as IWeatherForecast,
+    location: {} as ILocation
 });
 
 type ContextProviderProps = {
@@ -24,12 +29,12 @@ type ContextProviderProps = {
 const ContextProvider: React.FC<ContextProviderProps> =  ({ children }) => {
  
     const [position, setPosition] = useState({ latitude: 0, longitude: 0})
-    const [weather, setWeather] = useState({} as IWeather)
+    const [weather, setWeather] = useState({} as IWeatherForecast)
+    const [location, setLocation] = useState({} as ILocation)
 
     const getPosition = () => {
         navigator.geolocation.getCurrentPosition((position) => {
           const { latitude, longitude } = position.coords
-          console.log(position)
           setPosition({ latitude, longitude })
         })
       }
@@ -38,6 +43,10 @@ const ContextProvider: React.FC<ContextProviderProps> =  ({ children }) => {
         const weather = await getWeatherFromAPI(position.latitude, position.longitude)
         setWeather(weather) 
     }
+      const getLocation = async () => {
+        const location = await getLocationFromLatitudeLongitute(position.latitude, position.longitude)
+        setLocation(location)
+      }
 
    useEffect(() => {
        getPosition()
@@ -45,10 +54,11 @@ const ContextProvider: React.FC<ContextProviderProps> =  ({ children }) => {
 
    useEffect(() => {
          getWeather()
+         getLocation()
     }, [position])
 
     return (
-        <Context.Provider value={{ position, weather }}>{children}</Context.Provider>
+        <Context.Provider value={{ position, weather, location }}>{children}</Context.Provider>
     )
   
 }   
