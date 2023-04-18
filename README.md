@@ -13,6 +13,7 @@ Wather App - é uma aplicação que pega sua localização para trazer previsõe
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com) e [Node.js](https://nodejs.org/en/) ou [Docker](https://www.docker.com/).
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+E também é necessário renomear o arquivo .env.example para .env
 
 #### 🎲 Rodando sem Docker
 <details>
