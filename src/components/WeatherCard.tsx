@@ -24,20 +24,25 @@ export default function WeatherCard(props: { weather: IWeather }) {
     }
    
 
-    useEffect(() => {
-        getIcon(weather.weather[0].icon)
-    }, [position])
+    // useEffect(() => {
+    //     (weather.weather[0].icon)
+    //       // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [position])
 
     useEffect(() => {
         getWeatherDate()
+        getIcon(weather.weather[0].icon)
     })
 
-  
-
+  const styling = {
+    margin: '20px',
+    height: '30%',
+    border: '1px solid white',
+  } as const
     
 
   return (
-          <div >
+          <div style={styling}>
       <h1>{`Data ${weatherDate}`}</h1>
       { iconURL && <Image src={iconURL} alt={weather.weather[0].description} width={30} height={30} />}
       <p>{`Temperatura atual: ${weather.main.temp}`}</p>

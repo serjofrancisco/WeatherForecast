@@ -3,8 +3,8 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 import WeatherCard from "@/components/WeatherCard"
 import Header from "@/components/Header"
-import LocationCard from "@/components/LocationCard"
 import Footer from "@/components/Footer"
+import CurrentWeatherCard from "@/components/CurrentWeatherCard"
 import { Context } from "@/context/context"
 import { useContext } from "react"
 import Head from "next/head"
@@ -22,7 +22,7 @@ export default function Home() {
    }, [])
    const styling = {
     backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: "cover",
+    backgroundSize: "fill",
     position: "absolute",
     width: "100%",
     height: "100%",
@@ -49,7 +49,7 @@ export default function Home() {
     </Head>
     <Header />
     <main style={styling}>
-      <LocationCard />
+      <CurrentWeatherCard />
       <div style={externalDivWeatherCard}>
       { weather.list ? weather.list.map((item, index) => {
         return <WeatherCard weather={item} key={index}/>

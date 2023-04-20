@@ -55,6 +55,7 @@ const ContextProvider: React.FC<ContextProviderProps> =  ({ children }) => {
    useEffect(() => {
          getWeather()
          getLocation()
+           // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [position])
 
     return (

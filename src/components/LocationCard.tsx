@@ -31,16 +31,24 @@ export default function LocationCard() {
   useEffect(() => {
     getSunriseSunset()
     getLocationName()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location])
 
+  const styling = {
+    color: 'blue',
+    padding: '10px',
+    textAlign: 'center',
+  } as const
     
   return (
       city && sunrise ?
-      <div>
-        <h1>{country}</h1>
-        <h1>{city}</h1>
-        <p>{`Nascer do sol: ${sunrise}`}</p>
-        <p>{`Pôr do sol: ${sunset}`}</p>
+      <div className="bold" style={styling}>
+       
+        <span>{city} |</span>
+        <span> {country} |</span>
+        <span>{` Nascer do sol: ${sunrise} |`}</span>
+        <span>{` Pôr do sol: ${sunset} `}</span>
+        
       </div>
       : <h1>Carregando...</h1>
   )

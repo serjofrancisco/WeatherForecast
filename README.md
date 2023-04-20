@@ -4,8 +4,9 @@
 
 ## 💻 Sobre o projeto
 
-Wather App - é uma aplicação que pega sua localização para trazer previsões do tempo, foi desenvolvido com Next.js, TailwindCSS e Typescript. 
+Wather App - é uma aplicação que pega sua localização para trazer previsões do tempo, foi desenvolvido com Next.js, TailwindCSS e Typescript
 ---
+
 ## 🚀 Como executar o projeto
 
 ### Pré-requisitos
@@ -16,6 +17,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 E também é necessário renomear o arquivo .env.example para .env
 
 #### 🎲 Rodando sem Docker
+
 <details>
 
 ```bash
@@ -35,9 +37,11 @@ $ npm run dev
 # A aplicação inciará na porta:3000 - acesse http://localhost:3000
 
 ```
+
 </details>
 
 #### 🎲 Rodando com Docker
+
 <details>
 
 ```bash
@@ -54,17 +58,18 @@ $ docker-compose up -d
 # A aplicação inciará na porta:3000 - acesse http://localhost:3000
 
 ```
+
 </details>
 
 ## 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
--   **[Node.js](https://nodejs.org/en/)**
--   **[TypeScript](https://www.typescriptlang.org/)**
--   **[dotENV](https://github.com/motdotla/dotenv)**
--   **[Docker](https://www.docker.com/)**
--   **[Next.js](https://nextjs.org/)**
--   **[TailwindCSS](https://tailwindcss.com/)**
 
+- **[Node.js](https://nodejs.org/en/)**
+- **[TypeScript](https://www.typescriptlang.org/)**
+- **[dotENV](https://github.com/motdotla/dotenv)**
+- **[Docker](https://www.docker.com/)**
+- **[Next.js](https://nextjs.org/)**
+- **[TailwindCSS](https://tailwindcss.com/)**
 
 > Veja o arquivo  [package.json](https://github.com/serjofrancisco/WeatherForecast/blob/main/package.json)

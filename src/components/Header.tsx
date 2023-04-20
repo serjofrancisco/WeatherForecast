@@ -1,9 +1,9 @@
-import Head from "next/head"
+import LocationCard from "@/components/LocationCard"
 
 export default function Header() {
   return (
     <header>
-        <h1>Weather APP</h1>
+        <LocationCard />
     </header>
   )
 }
