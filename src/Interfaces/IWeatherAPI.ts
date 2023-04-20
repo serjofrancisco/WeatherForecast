@@ -61,47 +61,47 @@ interface IWeatherForecast {
 }
 interface ICurrentWeather {
     "coord": {
-        "lon": string,
-        "lat": -22.8512
+        "lon": string, // longitude
+        "lat": string // latitude
     },
     "weather": [
         {
-            "id": number,
-            "main": string,
-            "description": string,
-            "icon": string
+            "id": number, // id da condição meteorológica
+            "main": string, // grupo da condição meteorológica
+            "description": string, // condição meteorológica
+            "icon": string // ícone da condição meteorológica
         }
     ],
     "base": string,
     "main": {
-        "temp": number,
-        "feels_like": number,
-        "temp_min": number,
-        "temp_max": number,
-        "pressure": number,
-        "humidity": number
+        "temp": number, // temperatura
+        "feels_like": number, // sensação térmica
+        "temp_min": number, // temperatura mínima
+        "temp_max": number, // temperatura máxima
+        "pressure": number, // pressão atmosférica (hPa)
+        "humidity": number // umidade relativa do ar
     },
-    "visibility": number,
+    "visibility": number, // visibilidade
     "wind": {
-        "speed": number,
-        "deg": number,
-        "gust": number
+        "speed": number, // velocidade do vento
+        "deg": number, // direção do vento
+        "gust": number // velocidade do vento
     },
     "clouds": {
-        "all": number
+        "all": number // taxa de nuvens
     },
-    "dt": number,
-    "sys": {
-        "type": number,
-        "id": number,
-        "country": string,
-        "sunrise": number,
-        "sunset": number
+    "dt": number, // data e hora da previsão
+    "sys": { 
+        "type": number, // tipo de sistema
+        "id": number, // id do sistema
+        "country": string, // código do país
+        "sunrise": number, // horário do nascer do sol
+        "sunset": number // horário do pôr do sol
     },
-    "timezone": number,
-    "id": number,
-    "name": string,
-    "cod": number
+    "timezone": number, // fuso horário (segundos)
+    "id": number, // id da cidade
+    "name": string, // nome da cidade
+    "cod": number // código de resposta
 }
 
 export type {IWeather, IWeatherForecast, ICurrentWeather};
