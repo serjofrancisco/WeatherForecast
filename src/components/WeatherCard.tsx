@@ -5,6 +5,7 @@ import { useContext } from "react"
 import { IWeather } from "@/Interfaces/IWeatherAPI"
 import Image from "next/image"
 import { getCompleteDateFromTimestamp } from "@/helpers/dateFormat"
+import { firstLetterToUpperCase } from "@/helpers/stringFormt"
 
 
 export default function WeatherCard(props: { weather: IWeather }) {
@@ -44,10 +45,15 @@ export default function WeatherCard(props: { weather: IWeather }) {
   return (
           <div style={styling}>
       <h1>{`Data ${weatherDate}`}</h1>
+      <h1>{`${
+           firstLetterToUpperCase(weather.weather[0].description)
+          }`}</h1>
       { iconURL && <Image src={iconURL} alt={weather.weather[0].description} width={30} height={30} />}
       <p>{`Temperatura atual: ${weather.main.temp}`}</p>
       <p>{`Temperatura Máxima: ${weather.main.temp_max}`}</p>
       <p>{`Temperatura Minima: ${weather.main.temp_min}`}</p>
+      <p>{`Velocidade do Vento: ${weather.wind.speed}Km/h`}</p>
+      <p>{`Chance de Chuva: ${weather.pop * 100}%`}</p>
       </div>
   )
 }
