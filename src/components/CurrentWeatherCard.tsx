@@ -31,9 +31,10 @@ export default function CurrentWeatherCard() {
     <div>
        { currentWeather.main ? (
             <div>
-                <h1>{`${
+                <h1>Clima Atual</h1>
+                <p>{`${
                     firstLetterToUpperCase(currentWeather.weather[0].description)
-                    }`}</h1>
+                    }`}</p>
                 { iconURL && <Image src={iconURL} alt={currentWeather.weather[0].description} width={30} height={30} />}
                 <p>{`Temperatura Atual: ${currentWeather.main.temp}`}</p>
                 <p>{`Sensação Térmica: ${currentWeather.main.feels_like}`}</p>
