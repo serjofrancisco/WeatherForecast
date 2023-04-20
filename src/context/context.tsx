@@ -1,67 +1,74 @@
-import React, { createContext, useState, useEffect } from "react";
-import { getWeatherFromAPI } from "@/services/weatherService";
-import { IWeatherForecast } from "@/Interfaces/IWeatherAPI";
-import { ILocation } from "@/Interfaces/ILocationAPI";
-import { getLocationFromLatitudeLongitute } from "@/services/locationService";
+import React, {
+  createContext, useState, useEffect, useMemo, ReactElement, ReactNode,
+} from 'react';
+import { getWeatherFromAPI } from '@/services/weatherService';
+import { IWeatherForecast } from '@/Interfaces/IWeatherAPI';
+import { ILocation } from '@/Interfaces/ILocationAPI';
+import getLocationFromLatitudeLongitute from '@/services/locationService';
 
 type ContextType = {
-    position: {
-        latitude: number;
-        longitude: number;
-    }
-    weather: IWeatherForecast;
-    location: ILocation;
-}
+  position: {
+    latitude: number;
+    longitude: number;
+  }
+  weather: IWeatherForecast;
+  location: ILocation;
+};
 
 const Context = createContext<ContextType>({
-    position: {
-        latitude: 0,	
-        longitude: 0
-    },
-    weather: {} as IWeatherForecast,
-    location: {} as ILocation
+  position: {
+    latitude: 0,
+    longitude: 0,
+  },
+  weather: {} as IWeatherForecast,
+  location: {} as ILocation,
 });
 
 type ContextProviderProps = {
-    children: React.ReactNode;
+  children: ReactNode;
+};
+
+function ContextProvider({ children }: ContextProviderProps): ReactElement<ContextProviderProps> {
+  const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
+  const [weather, setWeather] = useState({} as IWeatherForecast);
+  const [location, setLocation] = useState({} as ILocation);
+
+  const getPosition = () => {
+    navigator.geolocation.getCurrentPosition((locationGet) => {
+      const { latitude, longitude } = locationGet.coords;
+      setPosition({ latitude, longitude });
+    });
   };
 
-const ContextProvider: React.FC<ContextProviderProps> =  ({ children }) => {
- 
-    const [position, setPosition] = useState({ latitude: 0, longitude: 0})
-    const [weather, setWeather] = useState({} as IWeatherForecast)
-    const [location, setLocation] = useState({} as ILocation)
+  const getWeather = async () => {
+    const weatherData = await getWeatherFromAPI(position.latitude, position.longitude);
+    setWeather(weatherData);
+  };
+  const getLocation = async () => {
+    const { latitude, longitude } = position;
+    const locationData = await getLocationFromLatitudeLongitute(latitude, longitude);
+    setLocation(locationData);
+  };
 
-    const getPosition = () => {
-        navigator.geolocation.getCurrentPosition((position) => {
-          const { latitude, longitude } = position.coords
-          setPosition({ latitude, longitude })
-        })
-      }
+  useEffect(() => {
+    getPosition();
+  }, []);
 
-      const getWeather = async () => {
-        const weather = await getWeatherFromAPI(position.latitude, position.longitude)
-        setWeather(weather) 
-    }
-      const getLocation = async () => {
-        const location = await getLocationFromLatitudeLongitute(position.latitude, position.longitude)
-        setLocation(location)
-      }
+  useEffect(() => {
+    getWeather();
+    getLocation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [position]);
 
-   useEffect(() => {
-       getPosition()
-   }, [])
+  const value = useMemo(() => ({
+    position,
+    weather,
+    location,
+  }), [position, weather, location]);
 
-   useEffect(() => {
-         getWeather()
-         getLocation()
-           // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [position])
+  return (
+    <Context.Provider value={value}>{children}</Context.Provider>
+  );
+}
 
-    return (
-        <Context.Provider value={{ position, weather, location }}>{children}</Context.Provider>
-    )
-  
-}   
-
-export { Context, ContextProvider }
+export { Context, ContextProvider };

@@ -1,9 +1,9 @@
-import LocationCard from "@/components/LocationCard"
+import LocationCard from '@/components/LocationCard';
 
 export default function Header() {
   return (
     <header>
-        <LocationCard />
+      <LocationCard />
     </header>
-  )
+  );
 }

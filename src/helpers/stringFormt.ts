@@ -2,4 +2,4 @@ function firstLetterToUpperCase(str: string) {
   return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
 }
 
-export { firstLetterToUpperCase }
+export default firstLetterToUpperCase;
