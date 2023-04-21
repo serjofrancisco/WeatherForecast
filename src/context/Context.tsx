@@ -36,6 +36,7 @@ function ContextProvider({ children }: IContextProviderProps): ReactElement<ICon
   }, []);
 
   useEffect(() => {
+    if (!location?.geometry) return;
     const { lat, lng } = location.geometry;
     getWeather(lat, lng);
     // eslint-disable-next-line react-hooks/exhaustive-deps

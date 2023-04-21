@@ -6,7 +6,7 @@ import { ICurrentWeather } from '@/Interfaces/IWeatherAPI';
 import Image from 'next/image';
 
 export default function CurrentWeatherCard() {
-  const { position } = useContext(MyContext);
+  const { location } = useContext(MyContext);
   const [iconURL, setIconURL] = useState('');
   const [currentWeather, setCurrentWeather] = useState<ICurrentWeather>(null!);
 
@@ -16,15 +16,18 @@ export default function CurrentWeatherCard() {
   };
 
   const getCurrentWeather = async () => {
-    const weather = await getCurrentWeatherFromAPI(position.latitude, position.longitude);
-    setCurrentWeather(weather);
-    getIcon(weather.weather[0].icon);
+    if (location?.geometry) {
+      const { lat, lng } = location.geometry;
+      const weather = await getCurrentWeatherFromAPI(lat, lng);
+      setCurrentWeather(weather);
+      getIcon(weather.weather[0].icon);
+    }
   };
 
   useEffect(() => {
     getCurrentWeather();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [position]);
+  }, [location]);
 
   return (
     <div>
