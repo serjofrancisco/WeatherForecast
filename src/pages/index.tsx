@@ -10,7 +10,6 @@ import Head from 'next/head';
 export default function Home() {
   const [backgroundImage, setBackgroundImage] = useState('');
   const { weather } = useContext(MyContext);
-  const value = useContext(MyContext);
   const getBackgroundImage = async () => {
     const url = await getURl();
     setBackgroundImage(url);
@@ -20,9 +19,6 @@ export default function Home() {
     getBackgroundImage();
   }, []);
 
-  useEffect(() => {
-    console.log(value);
-  }, [value]);
   const styling = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'fill',

@@ -15,5 +15,3 @@ async function getLocationFromLatitudeLongitute(lat: number, lon: number) {
 export default getLocationFromLatitudeLongitute;
 
 // API documentation: https://opencagedata.com/api
-
-// make a interface with the data above
