@@ -21,8 +21,8 @@ function ContextProvider({ children }: IContextProviderProps): ReactElement<ICon
     });
   };
 
-  const getWeather = async () => {
-    const weatherData = await getWeatherFromAPI(position.latitude, position.longitude);
+  const getWeather = async (latitute: number, longitude: number) => {
+    const weatherData = await getWeatherFromAPI(latitute, longitude);
     setWeather(weatherData);
   };
   const getLocation = async () => {
@@ -36,7 +36,12 @@ function ContextProvider({ children }: IContextProviderProps): ReactElement<ICon
   }, []);
 
   useEffect(() => {
-    getWeather();
+    const { lat, lng } = location.geometry;
+    getWeather(lat, lng);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
+
+  useEffect(() => {
     getLocation();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [position]);
