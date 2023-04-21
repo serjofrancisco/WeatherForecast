@@ -17,6 +17,7 @@ export default function CurrentWeatherCard() {
 
   const getCurrentWeather = async () => {
     const weather = await getCurrentWeatherFromAPI(position.latitude, position.longitude);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>', weather);
     setCurrentWeather(weather);
     getIcon(weather.weather[0].icon);
   };
