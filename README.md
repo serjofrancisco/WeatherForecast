@@ -71,5 +71,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - **[Docker](https://www.docker.com/)**
 - **[Next.js](https://nextjs.org/)**
 - **[TailwindCSS](https://tailwindcss.com/)**
+- **[Dayjs](https://day.js.org/)**
 
 > Veja o arquivo  [package.json](https://github.com/serjofrancisco/WeatherForecast/blob/main/package.json)

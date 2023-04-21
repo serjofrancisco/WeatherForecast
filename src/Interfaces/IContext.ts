@@ -9,6 +9,7 @@ interface IContext {
   }
   weather: IWeatherForecast;
   location: ILocation;
+  setLocation: (location: ILocation) => void;
 }
 
 interface IContextProviderProps {

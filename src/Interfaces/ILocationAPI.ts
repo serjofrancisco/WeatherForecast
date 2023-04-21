@@ -89,8 +89,8 @@ export interface ILocation {
     'ISO_3166-2': string[], // Codigo pais e estado no formado [pais-estado]
     '_category': string,
     '_type': string,
-    'city': string,
-    'city_district': string,
+    'city'?: string,
+    'city_district?': string,
     'continent': string,
     'country': string,
     'country_code': string,
@@ -104,6 +104,8 @@ export interface ILocation {
     'state_code': string,
     'state_district': string,
     'suburb': string
+    'town'?: string
+    'village'?: string
   },
   'confidence': number,
   'formatted': string,

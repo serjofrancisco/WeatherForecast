@@ -5,12 +5,12 @@ import { getWeatherFromAPI } from '@/services/weatherService';
 import { IWeatherForecast } from '@/Interfaces/IWeatherAPI';
 import { IContext, IContextProviderProps } from '@/Interfaces/IContext';
 import { ILocation } from '@/Interfaces/ILocationAPI';
-import getLocationFromLatitudeLongitute from '@/services/locationService';
+import { getLocationFromLatitudeLongitute } from '@/services/locationService';
 
 const MyContext = createContext<IContext>(null!);
 
 function ContextProvider({ children }: IContextProviderProps): ReactElement<IContextProviderProps> {
-  const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
+  const [position, setPosition] = useState({ latitude: -23.5558, longitude: -46.6396 });
   const [weather, setWeather] = useState<IWeatherForecast>(null!);
   const [location, setLocation] = useState<ILocation>(null!);
 
@@ -45,7 +45,8 @@ function ContextProvider({ children }: IContextProviderProps): ReactElement<ICon
     position,
     weather,
     location,
-  }), [position, weather, location]);
+    setLocation,
+  }), [position, weather, location, setLocation]);
 
   return (
     <MyContext.Provider value={value}>{children}</MyContext.Provider>

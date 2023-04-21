@@ -33,4 +33,4 @@ function getWeatherIconURL(icon: string) {
 
 export { getWeatherFromAPI, getWeatherIconURL, getCurrentWeatherFromAPI };
 
-// API documentation: https://openweathermap.org/forecast5
+// API documentation: https://openweathermap.org/

@@ -11,6 +11,7 @@ export default function LocationCard() {
 
   const getSunriseSunset = () => {
     if (location?.annotations) {
+      console.log('location', location);
       const sunriseData = getHourFromTimestamp(location.annotations.sun.rise.apparent);
       const sunsetData = getHourFromTimestamp(location.annotations.sun.set.apparent);
       setSunrise(sunriseData);
@@ -19,10 +20,13 @@ export default function LocationCard() {
   };
 
   const getLocationName = () => {
-    if (location?.components?.city) {
+    if (location?.components) {
       const state = location.components['ISO_3166-2'][0].substring(2);
-      const { city, country: countryLocation } = location.components;
-      setCityState(`${city}${state}`);
+      const {
+        town, village, city, country: countryLocation,
+      } = location.components;
+      const cityName = city || town || village;
+      setCityState(`${cityName}${state}`);
       setCountry(countryLocation);
     }
   };
