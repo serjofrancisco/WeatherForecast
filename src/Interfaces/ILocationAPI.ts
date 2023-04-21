@@ -90,7 +90,7 @@ export interface ILocation {
     '_category': string,
     '_type': string,
     'city'?: string,
-    'city_district?': string,
+    'city_district'?: string,
     'continent': string,
     'country': string,
     'country_code': string,

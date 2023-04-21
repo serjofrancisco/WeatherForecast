@@ -1595,6 +1595,7 @@ const contextMock: IContext = {
       lng: -43.2489814,
     },
   },
+  setLocation: () => {},
 };
 
 export default contextMock;
