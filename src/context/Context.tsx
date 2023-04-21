@@ -1,37 +1,18 @@
 import React, {
-  createContext, useState, useEffect, useMemo, ReactElement, ReactNode,
+  createContext, useState, useEffect, useMemo, ReactElement,
 } from 'react';
 import { getWeatherFromAPI } from '@/services/weatherService';
 import { IWeatherForecast } from '@/Interfaces/IWeatherAPI';
+import { IContext, IContextProviderProps } from '@/Interfaces/IContext';
 import { ILocation } from '@/Interfaces/ILocationAPI';
 import getLocationFromLatitudeLongitute from '@/services/locationService';
 
-type ContextType = {
-  position: {
-    latitude: number;
-    longitude: number;
-  }
-  weather: IWeatherForecast;
-  location: ILocation;
-};
+const MyContext = createContext<IContext>(null!);
 
-const Context = createContext<ContextType>({
-  position: {
-    latitude: 0,
-    longitude: 0,
-  },
-  weather: {} as IWeatherForecast,
-  location: {} as ILocation,
-});
-
-type ContextProviderProps = {
-  children: ReactNode;
-};
-
-function ContextProvider({ children }: ContextProviderProps): ReactElement<ContextProviderProps> {
+function ContextProvider({ children }: IContextProviderProps): ReactElement<IContextProviderProps> {
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
-  const [weather, setWeather] = useState({} as IWeatherForecast);
-  const [location, setLocation] = useState({} as ILocation);
+  const [weather, setWeather] = useState<IWeatherForecast>(null!);
+  const [location, setLocation] = useState<ILocation>(null!);
 
   const getPosition = () => {
     navigator.geolocation.getCurrentPosition((locationGet) => {
@@ -60,15 +41,15 @@ function ContextProvider({ children }: ContextProviderProps): ReactElement<Conte
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [position]);
 
-  const value = useMemo(() => ({
+  const value = useMemo<IContext>(() => ({
     position,
     weather,
     location,
   }), [position, weather, location]);
 
   return (
-    <Context.Provider value={value}>{children}</Context.Provider>
+    <MyContext.Provider value={value}>{children}</MyContext.Provider>
   );
 }
 
-export { Context, ContextProvider };
+export { MyContext, ContextProvider };

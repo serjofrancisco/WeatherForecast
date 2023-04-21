@@ -1,9 +1,8 @@
-import React from 'react';
-import { render, waitForElementToBeRemoved } from '@testing-library/react';
+import { waitForElementToBeRemoved } from '@testing-library/react';
 import CurrentWeatherCard from '../src/components/CurrentWeatherCard';
 import currentWeather from './mocks/currentWeatherMock';
-// import { getCurrentWeatherFromAPI } from '../src/services/weatherService';
-// import { ICurrentWeather } from '../src/Interfaces/IWeatherAPI';
+import renderWithContext from './helpers/renderWithContext';
+import contextMock from './mocks/contextMock';
 
 describe('CurrentWeatherCard', () => {
   beforeEach(() => {
@@ -14,7 +13,7 @@ describe('CurrentWeatherCard', () => {
   });
 
   it('should render the current weather card', async () => {
-    const { findByText } = render(<CurrentWeatherCard />);
+    const { findByText } = renderWithContext(<CurrentWeatherCard />, contextMock);
     const nuvens = await findByText(/nuvens dispersas/i);
     expect(nuvens).toBeDefined();
     const temperaturaAtual = await findByText(/temperatura atual: 23.71/i);
@@ -31,7 +30,7 @@ describe('CurrentWeatherCard', () => {
     expect(velocidadeVento).toBeDefined();
   });
   it('should render and unrender the message carregando', async () => {
-    const { queryByText } = render(<CurrentWeatherCard />);
+    const { queryByText } = renderWithContext(<CurrentWeatherCard />, contextMock);
     await waitForElementToBeRemoved(() => queryByText(/carregando/i));
     expect(queryByText(/carregando/i)).toBeNull();
   });

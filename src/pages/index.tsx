@@ -4,12 +4,13 @@ import WeatherCard from '@/components/WeatherCard';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CurrentWeatherCard from '@/components/CurrentWeatherCard';
-import { Context } from '@/context/context';
+import { MyContext } from '@/context/Context';
 import Head from 'next/head';
 
 export default function Home() {
   const [backgroundImage, setBackgroundImage] = useState('');
-  const { weather } = useContext(Context);
+  const { weather } = useContext(MyContext);
+  const value = useContext(MyContext);
   const getBackgroundImage = async () => {
     const url = await getURl();
     setBackgroundImage(url);
@@ -18,6 +19,10 @@ export default function Home() {
   useEffect(() => {
     getBackgroundImage();
   }, []);
+
+  useEffect(() => {
+    console.log(value);
+  }, [value]);
   const styling = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'fill',
@@ -49,7 +54,7 @@ export default function Home() {
       <main style={styling}>
         <CurrentWeatherCard />
         <div style={externalDivWeatherCard}>
-          { (weather.list)
+          { (weather?.list)
             ? (weather.list
               .map((item) => <WeatherCard weather={item} key={item.dt} />)
             ) : <h1>Carregando...</h1>}

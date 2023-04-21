@@ -3,7 +3,6 @@ import { pathsToModuleNameMapper } from 'ts-jest';
 import { compilerOptions } from './tsconfig.json';
 
 module.exports = {
-  preset: 'ts-jest',
   testEnvironment: 'jsdom',
   moduleNameMapper:
   pathsToModuleNameMapper(compilerOptions.paths, {
@@ -14,4 +13,8 @@ module.exports = {
   },
   testRegex: "(/tests/.*\\.test|\\.spec)\\.tsx?$",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-}
+  globals: {
+    'ts-jest': {
+      tsConfig: 'tsconfig.test.json'
+    }
+}};

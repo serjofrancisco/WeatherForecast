@@ -1,16 +1,16 @@
 import { getHourFromTimestamp } from '@/helpers/dateFormat';
-import { Context } from '@/context/context';
+import { MyContext } from '@/context/Context';
 import { useContext, useEffect, useState } from 'react';
 
 export default function LocationCard() {
-  const { location } = useContext(Context);
+  const { location } = useContext(MyContext);
   const [sunrise, setSunrise] = useState('');
   const [sunset, setSunset] = useState('');
   const [cityState, setCityState] = useState('');
   const [country, setCountry] = useState('');
 
   const getSunriseSunset = () => {
-    if (location.annotations) {
+    if (location?.annotations) {
       const sunriseData = getHourFromTimestamp(location.annotations.sun.rise.apparent);
       const sunsetData = getHourFromTimestamp(location.annotations.sun.set.apparent);
       setSunrise(sunriseData);

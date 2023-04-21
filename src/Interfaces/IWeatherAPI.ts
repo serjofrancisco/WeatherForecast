@@ -29,7 +29,7 @@ interface IWeather {
   },
   'visibility': number, // visibilidade
   'pop': number, // probabilidade de chuva
-  'rain': {
+  'rain'?: {
     '3h': number // volume de chuva nas últimos 3 horas
   },
   'sys': {

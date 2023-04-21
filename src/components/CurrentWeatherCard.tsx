@@ -1,14 +1,14 @@
 import { useContext, useState, useEffect } from 'react';
-import { Context } from '@/context/context';
+import { MyContext } from '@/context/Context';
 import { getCurrentWeatherFromAPI, getWeatherIconURL } from '@/services/weatherService';
 import firstLetterToUpperCase from '@/helpers/stringFormt';
 import { ICurrentWeather } from '@/Interfaces/IWeatherAPI';
 import Image from 'next/image';
 
 export default function CurrentWeatherCard() {
-  const { position } = useContext(Context);
+  const { position } = useContext(MyContext);
   const [iconURL, setIconURL] = useState('');
-  const [currentWeather, setCurrentWeather] = useState({} as ICurrentWeather);
+  const [currentWeather, setCurrentWeather] = useState<ICurrentWeather>(null!);
 
   const getIcon = (icon: string) => {
     const url = getWeatherIconURL(icon);
@@ -17,7 +17,6 @@ export default function CurrentWeatherCard() {
 
   const getCurrentWeather = async () => {
     const weather = await getCurrentWeatherFromAPI(position.latitude, position.longitude);
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>', weather);
     setCurrentWeather(weather);
     getIcon(weather.weather[0].icon);
   };
@@ -29,7 +28,7 @@ export default function CurrentWeatherCard() {
 
   return (
     <div>
-      { currentWeather.main ? (
+      { currentWeather?.main ? (
         <div>
           <h1>Clima Atual</h1>
           <p>
