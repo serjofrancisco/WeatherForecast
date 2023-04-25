@@ -21,6 +21,11 @@ export default function Footer() {
         {' '}
         <a href="https://openweathermap.org/">OpenWeather</a>
       </p>
+      <p>
+        API:
+        {' '}
+        <a href="https://servicodados.ibge.gov.br/api/docs/localidades">IBGE</a>
+      </p>
     </footer>
   );
 }
