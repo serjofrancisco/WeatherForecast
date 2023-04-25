@@ -61,16 +61,42 @@ $ docker-compose up -d
 
 </details>
 
+#### 🎲 Rodando testes
+
+<details>
+
+```bash
+# Necessário Node.JS
+  
+# Clone este repositório
+$ git clone https://github.com/serjofrancisco/WeatherForecast
+
+# Acesse a pasta do projeto no terminal
+$ cd WeatherForecast
+
+# Rode os testes
+$ npm test
+  
+# Para testar a cobertura
+$ npm run coverage
+
+```
+
+</details>
+
 ## 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
 - **[Node.js](https://nodejs.org/en/)**
+- **[ESLint](https://eslint.org/)**
 - **[TypeScript](https://www.typescriptlang.org/)**
 - **[dotENV](https://github.com/motdotla/dotenv)**
 - **[Docker](https://www.docker.com/)**
 - **[Next.js](https://nextjs.org/)**
 - **[TailwindCSS](https://tailwindcss.com/)**
 - **[Dayjs](https://day.js.org/)**
+- **[RTL](https://testing-library.com/)**
+- **[Jest](https://jestjs.io/)**
 
 > Veja o arquivo  [package.json](https://github.com/serjofrancisco/WeatherForecast/blob/main/package.json)
