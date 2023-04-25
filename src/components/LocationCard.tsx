@@ -11,7 +11,6 @@ export default function LocationCard() {
 
   const getSunriseSunset = () => {
     if (location?.annotations) {
-      console.log('location', location);
       const sunriseData = getHourFromTimestamp(location.annotations.sun.rise.apparent);
       const sunsetData = getHourFromTimestamp(location.annotations.sun.set.apparent);
       setSunrise(sunriseData);

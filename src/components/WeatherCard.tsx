@@ -45,7 +45,7 @@ export default function WeatherCard(props: { weather: IWeather }) {
       )}
       <p>{`Temperatura atual: ${weather.main.temp}`}</p>
       <p>{`Temperatura Máxima: ${weather.main.temp_max}`}</p>
-      <p>{`Temperatura Minima: ${weather.main.temp_min}`}</p>
+      <p>{`Temperatura Mínima: ${weather.main.temp_min}`}</p>
       <p>{`Velocidade do Vento: ${weather.wind.speed}Km/h`}</p>
       <p>{`Chance de Chuva: ${(weather.pop * 100).toFixed(0)}%`}</p>
     </div>
