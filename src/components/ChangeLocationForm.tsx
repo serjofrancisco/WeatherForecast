@@ -46,10 +46,24 @@ export default function ChangeLocationForm() {
   useEffect(() => {
     getStates();
   }, []);
+
+  const styling = {
+    color: 'black',
+    textAlign: 'center',
+    marginTop: '15px',
+  } as const;
+
+  const selectStyle = {
+    color: 'white',
+    margin: '5px',
+  };
+
+  const buttonTailWindClass = 'bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-lg';
+  const selectTailWindClass = 'p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500';
   return (
-    <div>
-      <h1>Change Location</h1>
-      <select onChange={getCities} style={{ color: 'black' }}>
+    <div style={styling}>
+      <h1><b>Escolha um Estado</b></h1>
+      <select style={selectStyle} className={selectTailWindClass} onChange={getCities}>
         {states.length > 0
         && states.map((state) => (
           <option
@@ -62,22 +76,22 @@ export default function ChangeLocationForm() {
       </select>
       {
             cities.length > 0
-           && (
-           <select onChange={getCity} style={{ color: 'black' }}>
-             {cities.map((city) => (
-               <option
-                 key={city['municipio-id']}
-                 value={city['municipio-nome']}
-               >
-                 {city['municipio-nome']}
-               </option>
-             ))}
-           </select>
-           )
+              && (
+                <select style={selectStyle} className={selectTailWindClass} onChange={getCity}>
+                  {cities.map((city) => (
+                    <option
+                      key={city['municipio-id']}
+                      value={city['municipio-nome']}
+                    >
+                      {city['municipio-nome']}
+                    </option>
+                  ))}
+                </select>
+              )
         }
 
       { selectedCity && selectedState
-        && (<button type="button" onClick={getCityLocation}>Change</button>)}
+        && (<button className={buttonTailWindClass} type="button" onClick={getCityLocation}>Change</button>)}
 
     </div>
 

@@ -37,8 +37,8 @@ export default function LocationCard() {
   }, [location]);
 
   const styling = {
-    color: 'blue',
-    padding: '10px',
+    fontSize: '1.2rem',
+    color: 'black',
     textAlign: 'center',
   } as const;
 
