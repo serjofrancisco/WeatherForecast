@@ -22,23 +22,24 @@ export default function Home() {
   const styling = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'fill',
-    position: 'absolute',
+    backgroundAttachment: 'fixed',
     width: '100%',
     height: '100%',
+    paddingTop: '50px',
   } as const;
 
   const externalDivWeatherCard = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    width: '100%',
+    width: '80%',
     height: '100%',
     padding: '0',
-    margin: '0',
-    fontSize: '1.5rem',
-    color: 'white',
-    textShadow: '2px 2px 4px #000000',
+    margin: 'auto',
+    color: 'black',
     justifyContent: 'center',
+    alignItems: 'center',
+    maxWidth: '1200px',
   } as const;
   return (
     <>
@@ -49,12 +50,12 @@ export default function Home() {
       <Header />
       <main style={styling}>
         <CurrentWeatherCard />
-        <div style={externalDivWeatherCard}>
+        <ul style={externalDivWeatherCard}>
           { (weather?.list)
             ? (weather.list
               .map((item) => <WeatherCard weather={item} key={item.dt} />)
             ) : <h1>Carregando...</h1>}
-        </div>
+        </ul>
       </main>
       <Footer />
     </>

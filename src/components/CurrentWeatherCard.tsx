@@ -29,41 +29,60 @@ export default function CurrentWeatherCard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
-  const stylingOutside = {
+  const stylingInside = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: '1.5rem',
-    color: 'white',
-    textShadow: '2px 2px 4px #000000',
+    color: 'black',
+  } as const;
+
+  const stylingOutside = {
+    width: '80%',
+    maxWidth: '1060px',
+    margin: 'auto',
+    backgroundColor: 'rgb(205 205 205 / 88%)',
+    borderRadius: '25px',
+    position: 'relative',
   } as const;
 
   const titleStyle = {
-    fontSize: '2rem',
-    color: 'white',
-    textShadow: '2px 2px 4px #000000',
+    fontSize: '3rem',
+    color: 'black',
     textAlign: 'center',
   } as const;
+
+  const imgStyle = {
+    position: 'absolute',
+    left: '300px',
+    top: '0px',
+  } as const;
+
   return (
-    <div>
+    <div style={stylingOutside}>
       { currentWeather?.main ? (
         <>
-          <h1 style={titleStyle}>Clima Atual</h1>
-          <div style={stylingOutside}>
+          <h1 style={titleStyle}>
+            {iconURL && (
+            <Image
+              style={imgStyle}
+              src={iconURL}
+              alt={currentWeather.weather[0].description}
+              width={90}
+              height={90}
+            />
+            )}
+            Clima Atual
+
+          </h1>
+          <div style={stylingInside}>
             <div>
               <p>
                 {`${firstLetterToUpperCase(currentWeather.weather[0].description)}`}
 
               </p>
-              {iconURL && (
-              <Image
-                src={iconURL}
-                alt={currentWeather.weather[0].description}
-                width={30}
-                height={30}
-              />
-              )}
+
               <p>{`Temperatura Atual: ${currentWeather.main.temp}`}</p>
               <p>{`Sensação Térmica: ${currentWeather.main.feels_like}`}</p>
             </div>
