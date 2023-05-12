@@ -1,26 +1,18 @@
 import { useContext, useState, useEffect } from 'react';
 import { MyContext } from '@/context/Context';
-import { getCurrentWeatherFromAPI, getWeatherIconURL } from '@/services/weatherService';
+import { getCurrentWeatherFromAPI } from '@/services/weatherService';
 import firstLetterToUpperCase from '@/helpers/stringFormt';
 import { ICurrentWeather } from '@/Interfaces/IWeatherAPI';
-import Image from 'next/image';
 
 export default function CurrentWeatherCard() {
   const { location } = useContext(MyContext);
-  const [iconURL, setIconURL] = useState('');
   const [currentWeather, setCurrentWeather] = useState<ICurrentWeather>(null!);
-
-  const getIcon = (icon: string) => {
-    const url = getWeatherIconURL(icon);
-    setIconURL(url);
-  };
 
   const getCurrentWeather = async () => {
     if (location?.geometry) {
       const { lat, lng } = location.geometry;
       const weather = await getCurrentWeatherFromAPI(lat, lng);
       setCurrentWeather(weather);
-      getIcon(weather.weather[0].icon);
     }
   };
 
@@ -53,10 +45,12 @@ export default function CurrentWeatherCard() {
     textAlign: 'center',
   } as const;
 
-  const imgStyle = {
-    position: 'absolute',
-    left: '300px',
-    top: '0px',
+  const pStyle = {
+    fontSize: '1.5rem',
+  } as const;
+
+  const InformationStyle = {
+    padding: '30px',
   } as const;
 
   return (
@@ -64,34 +58,47 @@ export default function CurrentWeatherCard() {
       { currentWeather?.main ? (
         <>
           <h1 style={titleStyle}>
-            {iconURL && (
-            <Image
-              style={imgStyle}
-              src={iconURL}
-              alt={currentWeather.weather[0].description}
-              width={90}
-              height={90}
-            />
-            )}
             Clima Atual
+            <p style={pStyle}>
+              {`${firstLetterToUpperCase(currentWeather.weather[0].description)}`}
 
+            </p>
           </h1>
           <div style={stylingInside}>
-            <div>
+            <div style={InformationStyle}>
+
               <p>
-                {`${firstLetterToUpperCase(currentWeather.weather[0].description)}`}
+                <b>Temperatura Atual: </b>
+                {currentWeather.main.temp}
+              </p>
+              <p>
+                <b>Sensação Térmica: </b>
+                {currentWeather.main.feels_like}
+              </p>
+              <p>
+                <b>Umidade: </b>
+                {currentWeather.main.humidity}
+                %
+              </p>
+            </div>
+            <div style={InformationStyle}>
+
+              <p>
+                <b>Temperatura Máxima: </b>
+                {currentWeather.main.temp_max}
+
+              </p>
+              <p>
+                <b>Temperatura Mínima: </b>
+                {currentWeather.main.temp_min}
 
               </p>
 
-              <p>{`Temperatura Atual: ${currentWeather.main.temp}`}</p>
-              <p>{`Sensação Térmica: ${currentWeather.main.feels_like}`}</p>
-            </div>
-            <div>
-
-              <p>{`Temperatura Máxima: ${currentWeather.main.temp_max}`}</p>
-              <p>{`Temperatura Mínima: ${currentWeather.main.temp_min}`}</p>
-              <p>{`Umidade: ${currentWeather.main.humidity}`}</p>
-              <p>{`Velocidade do Vento: ${currentWeather.wind.speed}Km/h`}</p>
+              <p>
+                <b>Velocidade do Vento: </b>
+                {currentWeather.wind.speed}
+                Km/h
+              </p>
             </div>
           </div>
 
