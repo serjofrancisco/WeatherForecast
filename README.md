@@ -4,10 +4,10 @@
 
 ## 💻 Sobre o projeto
 
-Wather App - é uma aplicação que pega sua localização para trazer previsões do tempo, foi desenvolvido com Next.js, TailwindCSS e Typescript
+Wather App - é uma aplicação que pega sua localização para trazer previsões do tempo, foi desenvolvido com Next.js, TailwindCSS e Typescript que pode ser acessado aqui: [Weather App](https://weather-forecast-tau-seven.vercel.app/)
 ---
 
-## 🚀 Como executar o projeto
+## 🚀 Como executar o projeto localmente
 
 ### Pré-requisitos
 
@@ -83,6 +83,7 @@ $ npm run coverage
 ```
 
 </details>
+
 
 ## 🛠 Tecnologias
 
